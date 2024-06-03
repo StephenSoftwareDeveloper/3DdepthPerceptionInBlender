@@ -1,0 +1,23 @@
+import bpy
+
+# Clear existing cameras
+bpy.ops.object.select_all(action='DESELECT')
+bpy.ops.object.select_by_type(type='CAMERA')
+bpy.ops.object.delete()
+
+# Create the original camera and set its position and rotation for the left eye
+camera_left = bpy.data.cameras.new("Camera_L")
+camera_left_obj = bpy.data.objects.new("Camera_L", camera_left)
+bpy.context.collection.objects.link(camera_left_obj)
+
+camera_left_obj.location = (10, -0.5, 3)
+camera_left_obj.rotation_euler = (80 * 3.14159 / 180, 0, 89.4 * 3.14159 / 180)
+
+# Create the camera for the right eye
+
+camera_right = bpy.data.cameras.new("Camera_R")
+camera_right_obj = bpy.data.objects.new("Camera_R", camera_right)
+bpy.context.collection.objects.link(camera_right_obj)
+
+camera_right_obj.location = (10, 0.5, 3)
+camera_right_obj.rotation_euler = (80 * 3.14159 / 180, 0, 89.4 * 3.14159 / 180)
